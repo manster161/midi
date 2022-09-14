@@ -1,13 +1,13 @@
 # MIDI experimentations
 
-##Prerequisites
-OSX
+## Prerequisites
+### OSX
 - Some version of Xcode (or Command Line Tools)
 - Python (for node-gyp)
-Windows
+### Windows
 - Microsoft Visual C++ (the Express edition works fine)
 - Python (for node-gyp)
-Linux
+### Linux
 - A C++ compiler
 - You must have installed and configured ALSA. Without it this module will NOT build.
 - Install the libasound2-dev package.
