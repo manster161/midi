@@ -1,6 +1,6 @@
 const hub = require('../midihub.js');
 
-test('check bindin callback', () => {
+test('check binding callback', () => {
     const val = 55;
     const cc = 1;
     function callback(val){
