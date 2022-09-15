@@ -2,7 +2,6 @@ const midi = require('midi');
 const fs = require('fs');
 const { Console } = require('node:console');
 const config = require('config');
-
 const hub = require('./midihub.js');
 const portNum = config.get('midi.port');
 
@@ -15,8 +14,8 @@ const input = new midi.Input();
 
 var count = input.getPortCount();
 
-const output = fs.createWriteStream('./stdout.log');
-const errorOutput = fs.createWriteStream('./stderr.log');
+const output = fs.createWriteStream(config.get('logging.std'));
+const errorOutput = fs.createWriteStream(config.get('logging.err'));
 // Custom simple logger
 const logger = new Console({ stdout: output, stderr: errorOutput });
 
