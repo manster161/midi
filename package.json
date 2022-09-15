@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "config": "^3.3.8",
     "midi": "^2.0.0"
   }
 }

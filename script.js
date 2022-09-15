@@ -3,7 +3,10 @@ const fs = require('fs');
 const { Console } = require('node:console');
 const config = require('config');
 
+const hub = require('./midihub.js');
 const portNum = config.get('midi.port');
+
+hub.addMapping(83, callback83);
 
 console.log(`midi port from config ${config.midi.port}`);
 
@@ -22,8 +25,7 @@ for (var i = 0; i < count; i++){
 }
 
 input.on('message', (deltaTime, message) => {
-    message.
-    console.log(`m: ${message} d: ${deltaTime}`);
+    hub.newMessage(message);
 })
 
 portName = input.getPortName(portNum);
@@ -31,6 +33,9 @@ logger.log(`Opening port: ${portName}`)
 console.log(`Opening port: ${portName}`)
 input.openPort(0);
 
+function callback83(value){
+    console.log(`callbackRecieved for cc83 ${value}`);
+}
 
 setTimeout(function() {
     input.closePort();
