@@ -7,7 +7,6 @@ var midihub = {
         if (mapping.has(message[1])){
             mapping.get(message[1])(message[2]);
         };
-        console.log(`cc:${message[1]} value:${message[2]}`);
     }
 };
 module.exports = midihub;

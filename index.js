@@ -1,41 +1,12 @@
-const midi = require('midi');
-const fs = require('fs');
-const { Console } = require('node:console');
-const config = require('config');
-const hub = require('./midihub.js');
-const portNum = config.get('midi.port');
+const mormalmidi = require('./mormalmidi.js');
 
-hub.addMapping(83, callback83);
+mormalmidi.init();
+mormalmidi.addMapping(83, val83);
 
-console.log(`midi port from config ${config.midi.port}`);
-
-var portName = "";
-const input = new midi.Input();
-
-var count = input.getPortCount();
-
-const output = fs.createWriteStream(config.get('logging.std'));
-const errorOutput = fs.createWriteStream(config.get('logging.err'));
-// Custom simple logger
-const logger = new Console({ stdout: output, stderr: errorOutput });
-
-for (var i = 0; i < count; i++){
-   logger.log(input.getPortName(i));
-}
-
-input.on('message', (deltaTime, message) => {
-    hub.newMessage(message);
-})
-
-portName = input.getPortName(portNum);
-logger.log(`Opening port: ${portName}`)
-console.log(`Opening port: ${portName}`)
-input.openPort(0);
-
-function callback83(value){
-    console.log(`callbackRecieved for cc83 ${value}`);
+function val83(value){
+    console.log(`Recieved value ${value} on cc 83`);
 }
 
 setTimeout(function() {
-    input.closePort();
+    mormalmidi.close();
   }, 100000);
