@@ -2,7 +2,7 @@ var midihub = {
     mapping: mapp = new Map(),
     
     addMapping: function (ccvalue, callback){
-        mapping.set(ccvalue, callback);
+        this.mapping.set(ccvalue, callback);
     },
 
     newMessage: function (message){
